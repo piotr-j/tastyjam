@@ -7,6 +7,6 @@ import com.badlogic.gdx.Gdx;
  */
 public class Box2dUtils {
 	public void doBox2dStuff() {
-		Gdx.app.log("", "Doing stuff, i swear!");
+		Gdx.app.log("", "Doing stuff, i swear v2!");
 	}
 }

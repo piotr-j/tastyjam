@@ -30,7 +30,7 @@ allprojects {
     }
 }
 
-project(":lib") {
+project(":tastyjam") {
     apply plugin: "java"
 
     dependencies {
