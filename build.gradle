@@ -16,8 +16,8 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "tasty-jam"
-        gdxVersion = '1.9.0'
+        appName = "tasty"
+        gdxVersion = '1.9.1'
         box2DLightsVersion = '1.4'
         aiVersion = '1.7.0'
         artemisOdbVersion = "1.2.1"
@@ -30,12 +30,27 @@ allprojects {
     }
 }
 
-project(":tastyjam") {
+
+project(":jam") {
     apply plugin: "java"
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        compile "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
+    }
+}
+
+project(":tools") {
+    apply plugin: "java"
+
+    dependencies {
+        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"

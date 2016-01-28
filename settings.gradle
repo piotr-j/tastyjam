@@ -1,1 +1,1 @@
-include 'tastyjam'
+include 'jam', 'tools'
