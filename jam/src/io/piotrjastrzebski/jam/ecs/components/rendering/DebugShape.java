@@ -54,6 +54,11 @@ public class DebugShape extends PooledComponent {
 			return (T)this;
 		}
 
+		public T color(float r, float g, float b, float a) {
+			this.color.set(r, g, b, a);
+			return (T)this;
+		}
+
 		public T offset(float ox, float oy) {
 			this.ox = ox;
 			this.oy = oy;
@@ -140,9 +145,19 @@ public class DebugShape extends PooledComponent {
 
 		private CircleShape() {}
 
-		public CircleShape init (ShapeRenderer.ShapeType type, float radius) {
+		public CircleShape init (ShapeRenderer.ShapeType type, float diameter) {
 			super.init(type);
+			this.radius = diameter/2;
+			return this;
+		}
+
+		public CircleShape radius (float radius) {
 			this.radius = radius;
+			return this;
+		}
+
+		public CircleShape diameter (float diameter) {
+			this.radius = diameter/2;
 			return this;
 		}
 
