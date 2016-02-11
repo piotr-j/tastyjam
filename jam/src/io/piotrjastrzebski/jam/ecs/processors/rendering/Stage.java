@@ -49,6 +49,14 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 		root.removeActor(actor.actual);
 	}
 
+	public Table getRoot () {
+		return root;
+	}
+
+	public com.badlogic.gdx.scenes.scene2d.Stage getStage () {
+		return stage;
+	}
+
 	@Override public InputProcessor getProcessor () {
 		return stage;
 	}
