@@ -4,7 +4,9 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
@@ -33,6 +35,8 @@ public class ShapeRenderer extends IteratingSystem {
 	}
 
 	@Override protected void begin () {
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		renderer.setProjectionMatrix(camera.combined);
 		renderer.begin(Line);
 	}
