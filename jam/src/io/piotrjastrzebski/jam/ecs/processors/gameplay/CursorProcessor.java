@@ -15,6 +15,7 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  */
 public class CursorProcessor extends BaseInputSystem {
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	public int justTouchedFrameDelay = 2;
 	public float x;
 	public float y;
 	public boolean touched;
@@ -22,9 +23,13 @@ public class CursorProcessor extends BaseInputSystem {
 	public boolean touchedMid;
 	public boolean touchedRight;
 	public boolean justTouched;
+	protected int justTouchedFrames;
 	public boolean justTouchedLeft;
+	protected int justTouchedLeftFrames;
 	public boolean justTouchedMid;
+	protected int justTouchedMidFrames;
 	public boolean justTouchedRight;
+	protected int justTouchedRightFrames;
 
 	private Vector3 tmp = new Vector3();
 	@Override protected void processSystem () {
@@ -32,23 +37,42 @@ public class CursorProcessor extends BaseInputSystem {
 		x = tmp.x;
 		y = tmp.y;
 		touched = Gdx.input.isTouched();
-		justTouched = Gdx.input.justTouched();
-		justTouchedLeft = justTouchedMid = justTouchedRight = false;
+		justTouchedFrames--;
+		if (justTouchedFrames < 0) {
+			justTouched = false;
+		}
+		justTouchedLeftFrames--;
+		if (justTouchedLeftFrames < 0) {
+			justTouchedLeft = false;
+		}
+		justTouchedMidFrames--;
+		if (justTouchedMidFrames < 0) {
+			justTouchedMid = false;
+		}
+		justTouchedRightFrames--;
+		if (justTouchedRightFrames < 0) {
+			justTouchedRight = false;
+		}
 	}
 
 	@Override public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+		justTouched = true;
+		justTouchedFrames = justTouchedFrameDelay;
 		switch (button) {
 		case Input.Buttons.LEFT:
 			touchedLeft = true;
 			justTouchedLeft = true;
+			justTouchedLeftFrames = justTouchedFrameDelay;
 			break;
 		case Input.Buttons.MIDDLE:
 			touchedMid = true;
 			justTouchedMid = true;
+			justTouchedMidFrames = justTouchedFrameDelay;
 			break;
 		case Input.Buttons.RIGHT:
 			touchedRight = true;
 			justTouchedRight = true;
+			justTouchedRightFrames = justTouchedFrameDelay;
 			break;
 		}
 		return super.touchDown(screenX, screenY, pointer, button);
