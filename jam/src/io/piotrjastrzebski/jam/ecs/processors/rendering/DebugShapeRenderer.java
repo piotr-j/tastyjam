@@ -14,7 +14,6 @@ import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
 
-import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType.Line;
 
 /**
  * Simple renderer
@@ -37,7 +36,7 @@ public class DebugShapeRenderer extends IteratingSystem {
 		Gdx.gl.glEnable(GL20.GL_BLEND);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		renderer.setProjectionMatrix(camera.combined);
-		renderer.begin(Line);
+		renderer.begin(ShapeRenderer.ShapeType.Line);
 	}
 
 	@Override protected void process (int entityId) {
