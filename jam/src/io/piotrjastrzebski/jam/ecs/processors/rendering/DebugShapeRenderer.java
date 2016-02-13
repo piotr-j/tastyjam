@@ -8,10 +8,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.Transform;
-import io.piotrjastrzebski.jam.ecs.components.rendering.AtlasAsset;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
 
@@ -22,15 +21,15 @@ import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType.Line;
  *
  * Created by EvilEntity on 28/01/2016.
  */
-public class ShapeRenderer extends IteratingSystem {
-	private static final String TAG = ShapeRenderer.class.getSimpleName();
+public class DebugShapeRenderer extends IteratingSystem {
+	private static final String TAG = DebugShapeRenderer.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
-	private @Wire com.badlogic.gdx.graphics.glutils.ShapeRenderer renderer;
+	public @Wire ShapeRenderer renderer;
 	private ComponentMapper<Transform> mTransform;
 	private ComponentMapper<DebugShape> mDebugShape;
 	private ComponentMapper<Tint> mTint;
 
-	public ShapeRenderer () {
+	public DebugShapeRenderer () {
 		super(Aspect.all(Transform.class, DebugShape.class));
 	}
 
@@ -57,7 +56,7 @@ public class ShapeRenderer extends IteratingSystem {
 		if (tint != null) renderer.setColor(Color.WHITE);
 	}
 
-	@Override protected void end () {
+	@Override public void end () {
 		renderer.end();
 	}
 }
