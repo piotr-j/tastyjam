@@ -59,7 +59,7 @@ public class DebugShape extends PooledComponent {
 			return (T)this;
 		}
 
-		public T offset(float ox, float oy) {
+		public T oxy(float ox, float oy) {
 			this.ox = ox;
 			this.oy = oy;
 			return (T)this;
@@ -114,7 +114,7 @@ public class DebugShape extends PooledComponent {
 			// TODO rotation?
 			renderer.rect(
 				transform.x + (centre?-width/2f:0) + ox,
-				transform.y + (centre?-height/2f:0) + ox,
+				transform.y + (centre?-height/2f:0) + oy,
 				width, height
 			);
 			renderer.setColor(tmp);
