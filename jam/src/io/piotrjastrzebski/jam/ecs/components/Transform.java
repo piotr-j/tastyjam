@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  * Created by EvilEntity on 28/01/2016.
  */
 public class Transform extends PooledComponent {
-	public float x, y, z;
+	public float x, y, cx, cy, z;
 	public float width, height;
 	public float scaleX;
 	public float scaleY;
@@ -23,18 +23,24 @@ public class Transform extends PooledComponent {
 	public Transform xy (float x, float y) {
 		this.x = x;
 		this.y = y;
+		cx = x + width / 2;
+		cy = y + height / 2;
 		return this;
 	}
 
 	public Transform xy (Vector2 position) {
 		this.x = position.x;
 		this.y = position.y;
+		cx = x + width / 2;
+		cy = y + height / 2;
 		return this;
 	}
 
-	public Transform centerXY (Vector2 position) {
-		this.x = position.x - width/2;
-		this.y = position.y - height/2;
+	public Transform cxy (Vector2 centre) {
+		this.x = centre.x - width / 2;
+		this.y = centre.y - height / 2;
+		cx = x + centre.x;
+		cy = y + centre.y;
 		return this;
 	}
 
@@ -62,18 +68,10 @@ public class Transform extends PooledComponent {
 	}
 
 	@Override protected void reset () {
-		x = y = z = 0;
+		x = cx = cy = y = z = 0;
 		width = height = 1;
 		originX = originY = .5f;
 		scaleX = scaleY = 1;
 		rotation = 0;
-	}
-
-	public float centerX () {
-		return x + width/2;
-	}
-
-	public float centerY () {
-		return y + height/2;
 	}
 }
