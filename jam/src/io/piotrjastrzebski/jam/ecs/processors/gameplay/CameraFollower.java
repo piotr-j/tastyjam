@@ -29,7 +29,7 @@ public class CameraFollower extends IteratingSystem {
 	@Override protected void process (int entityId) {
 		Transform t = mTransform.get(entityId);
 		CameraFollow cf = mFollow.get(entityId);
-		camera.position.set(t.centerX(), t.centerY(), 0f);
+		camera.position.set(t.cx, t.cy, 0f);
 		camera.update();
 	}
 }

@@ -40,7 +40,7 @@ public class Physics extends BaseEntitySystem {
 		BodyDef bodyDef = mBodyDef.get(entityId);
 
 		Transform trans = mTransform.get(entityId);
-		bodyDef.position(trans.centerX(), trans.centerY());
+		bodyDef.position(trans.cx, trans.cy);
 		bodyDef.rotation(trans.rotation);
 		// NOTE do we want this separation?
 		IBody iBody;
