@@ -20,7 +20,7 @@ allprojects {
         gdxVersion = '1.9.1'
         box2DLightsVersion = '1.4'
         aiVersion = '1.7.0'
-        artemisOdbVersion = "1.2.1"
+        artemisOdbVersion = "1.4.0"
     }
 
     repositories {
