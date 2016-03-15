@@ -37,7 +37,7 @@ public class DebugShape extends PooledComponent {
 	@SuppressWarnings("unchecked") public static abstract class Shape<T extends Shape> implements Pool.Poolable {
 		private ShapeRenderer.ShapeType type = ShapeRenderer.ShapeType.Line;
 		protected static Color tmp = new Color(Color.WHITE);
-		protected Color color = new Color(Color.WHITE);
+		public Color color = new Color(Color.WHITE);
 		public float ox;
 		public float oy;
 		protected Shape init(ShapeRenderer.ShapeType type) {
