@@ -43,7 +43,9 @@ public class GlobalSettings {
 	}
 
 	public static final String WIRE_GAME_CAM = "WIRE_GAME_CAM";
+	public static final String WIRE_DEBUG_GAME_CAM = "WIRE_DEBUG_GAME_CAM";
 	public static final String WIRE_GAME_VP = "WIRE_GAME_VP";
+	public static final String WIRE_DEBUG_GAME_VP = "WIRE_DEBUG_GAME_VP";
 	public static final String WIRE_GUI_CAM = "WIRE_GUI_CAM";
 	public static final String WIRE_GUI_VP = "WIRE_GUI_VP";
 
