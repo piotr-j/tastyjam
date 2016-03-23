@@ -29,7 +29,11 @@ public class DebugShapeRenderer extends IteratingSystem {
 	private ComponentMapper<Tint> mTint;
 
 	public DebugShapeRenderer () {
-		super(Aspect.all(Transform.class, DebugShape.class));
+		this(Aspect.all(Transform.class, DebugShape.class));
+	}
+
+	public DebugShapeRenderer (Aspect.Builder aspect) {
+		super(aspect);
 	}
 
 	@Override protected void begin () {
