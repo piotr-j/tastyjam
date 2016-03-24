@@ -39,8 +39,8 @@ public class Transform extends PooledComponent {
 	public Transform cxy (Vector2 centre) {
 		this.x = centre.x - width / 2;
 		this.y = centre.y - height / 2;
-		cx = x + centre.x;
-		cy = y + centre.y;
+		cx = centre.x;
+		cy = centre.y;
 		return this;
 	}
 
