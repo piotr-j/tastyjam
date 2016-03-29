@@ -36,6 +36,14 @@ public class Transform extends PooledComponent {
 		return this;
 	}
 
+	public Transform cxy (float cx, float cy) {
+		this.x = cx - width / 2;
+		this.y = cy - height / 2;
+		this.cx = cx;
+		this.cy = cy;
+		return this;
+	}
+
 	public Transform cxy (Vector2 centre) {
 		this.x = centre.x - width / 2;
 		this.y = centre.y - height / 2;
