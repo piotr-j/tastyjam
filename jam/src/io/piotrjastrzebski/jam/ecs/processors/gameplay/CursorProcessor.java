@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 
@@ -91,6 +92,20 @@ public class CursorProcessor extends BaseInputSystem {
 			break;
 		}
 		return super.touchUp(screenX, screenY, pointer, button);
+	}
+
+	/**
+	 * Check if cursor is contained in given rectangle
+	 */
+	public boolean isContained (float x, float y, float width, float height) {
+		return x <= this.x && x + width >= this.x && y <= this.y && y + height >= this.y;
+	}
+
+	/**
+	 * Check if cursor is contained in given rectangle specified by two corners
+	 */
+	public boolean isContainedCorners (float x1, float y1, float x2, float y2) {
+		return x1 <= this.x && x2 >= this.x && y1 <= this.y && y2 >= this.y;
 	}
 
 	@Override public InputProcessor getProcessor () {
