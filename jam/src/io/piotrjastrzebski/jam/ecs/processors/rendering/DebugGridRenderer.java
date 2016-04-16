@@ -22,8 +22,8 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  *	</code>
  * Created by PiotrJ on 10/03/16.
  */
-public class DebugGridRenderer2 extends BaseSystem {
-	private static final String TAG = DebugGridRenderer2.class.getSimpleName();
+public class DebugGridRenderer extends BaseSystem {
+	private static final String TAG = DebugGridRenderer.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
 	private @Wire ShapeRenderer renderer;
 	private @Wire ViewBounds vb;
@@ -32,11 +32,11 @@ public class DebugGridRenderer2 extends BaseSystem {
 	/**
 	 * Grid with 1 unit spacing and semi transparent cyan gridColor
 	 */
-	public DebugGridRenderer2 () {
+	public DebugGridRenderer () {
 		this(1);
 	}
 
-	public DebugGridRenderer2 (float size) {
+	public DebugGridRenderer (float size) {
 		this(size, 0, 1, 1, .25f);
 	}
 
@@ -47,7 +47,7 @@ public class DebugGridRenderer2 extends BaseSystem {
 	private Vector2 offset = new Vector2();
 	private boolean fancy = true;
 
-	public DebugGridRenderer2 (float size, float r, float g, float b, float a) {
+	public DebugGridRenderer (float size, float r, float g, float b, float a) {
 		this.size = size;
 		this.gridColor.set(r, g, b, a);
 		overlapColor.set(gridColor);
