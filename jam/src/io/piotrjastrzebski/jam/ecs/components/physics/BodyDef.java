@@ -10,8 +10,8 @@ import io.piotrjastrzebski.jam.ecs.processors.physics.Physics;
 /**
  * Created by EvilEntity on 22/01/2016.
  */
-public class BodyDef extends PooledComponent {public com.badlogic.gdx.physics.box2d.BodyDef def = new com.badlogic.gdx.physics.box2d.BodyDef();
-
+public class BodyDef extends PooledComponent {
+	public com.badlogic.gdx.physics.box2d.BodyDef def = new com.badlogic.gdx.physics.box2d.BodyDef();
 	public float restitution;
 	public float friction;
 	public float density;
