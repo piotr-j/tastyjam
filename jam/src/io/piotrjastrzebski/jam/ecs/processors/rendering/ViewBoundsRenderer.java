@@ -4,7 +4,6 @@ import com.artemis.BaseSystem;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import io.piotrjastrzebski.jam.ecs.processors.rendering.ViewBoundsProcessor.ViewBounds;
 
 /**
  * Renders current view bounds with debug camera
@@ -12,14 +11,13 @@ import io.piotrjastrzebski.jam.ecs.processors.rendering.ViewBoundsProcessor.View
  * Created by EvilEntity on 24/01/2016.
  */
 public class ViewBoundsRenderer extends BaseSystem {
-	private @Wire ViewBoundsProcessor vbp;
+	private @Wire ViewBounds vb;
 	private @Wire DebugShapeRenderer shapeRenderer;
 	private final Color color = new Color(Color.RED);
 
 	@Override protected void processSystem () {
 		final com.badlogic.gdx.graphics.glutils.ShapeRenderer renderer = shapeRenderer.renderer;
 		renderer.begin(ShapeType.Line);
-		ViewBounds vb = vbp.vb;
 		renderer.rect(vb.x, vb.y, vb.width, vb.height);
 		renderer.end();
 	}

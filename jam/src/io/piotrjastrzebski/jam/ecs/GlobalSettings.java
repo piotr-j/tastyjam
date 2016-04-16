@@ -15,32 +15,16 @@ public class GlobalSettings {
 	 * Should be called before any Screen is instantiated
 	 */
 	public static void init(float scale, int targetWidth, int targetHeight) {
-		GlobalSettings.scale = scale;
-		GlobalSettings.invScale = 1f/scale;
-		GlobalSettings.vpWidth = targetWidth * invScale;
-		GlobalSettings.vpHeight = targetHeight * invScale;
+		GlobalSettings.SCALE = scale;
+		GlobalSettings.INV_SCALE = 1f/scale;
+		GlobalSettings.WIDTH = targetWidth * INV_SCALE;
+		GlobalSettings.HEIGHT = targetHeight * INV_SCALE;
 	}
 
-	protected static float scale = 48f;
-	protected static float invScale = 1.f/scale;
-	protected static float vpWidth = 1280 * invScale;
-	protected static float vpHeight = 720 * invScale;
-
-	public static float scale () {
-		return scale;
-	}
-
-	public static float invScale () {
-		return invScale;
-	}
-
-	public static float vpWidth () {
-		return vpWidth;
-	}
-
-	public static float vpHeight () {
-		return vpHeight;
-	}
+	public static float SCALE = 48f;
+	public static float INV_SCALE = 1.f/ SCALE;
+	public static float WIDTH = 1280 * INV_SCALE;
+	public static float HEIGHT = 720 * INV_SCALE;
 
 	public static final String WIRE_GAME_CAM = "WIRE_GAME_CAM";
 	public static final String WIRE_DEBUG_GAME_CAM = "WIRE_DEBUG_GAME_CAM";
