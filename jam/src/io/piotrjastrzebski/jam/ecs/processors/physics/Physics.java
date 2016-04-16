@@ -24,14 +24,17 @@ public class Physics extends BaseEntitySystem {
 	private ComponentMapper<DynamicBody> mDynamicBody;
 	private ComponentMapper<KinematicBody> mKinematicBody;
 	private ComponentMapper<StaticBody> mStaticBody;
-	private World box2d;
+	public World b2d;
+	public float stepTime = 1/60f;
+	public int velocityIters = 6;
+	public int positionIters = 4;
 
 	public Physics () {
 		super(Aspect.all(Transform.class, BodyDef.class));
 	}
 
 	@Override protected void initialize () {
-		box2d = new World(GlobalSettings.GRAVITY, true);
+		b2d = new World(GlobalSettings.GRAVITY, true);
 	}
 
 	private FixtureDef fixtureDef = new FixtureDef();
@@ -58,7 +61,7 @@ public class Physics extends BaseEntitySystem {
 			throw new IllegalStateException("Invalid body type!");
 		}
 
-		Body body = box2d.createBody(bodyDef.def);
+		Body body = b2d.createBody(bodyDef.def);
 		iBody.setBody(body);
 
 		fixtureDef.restitution = bodyDef.restitution;
@@ -80,34 +83,30 @@ public class Physics extends BaseEntitySystem {
 
 	@Override protected void processSystem () {
 		// TODO proper fixed time step
-		box2d.step(1/60f, 6, 4);
+		b2d.step(stepTime, velocityIters, positionIters);
 	}
 
 	@Override protected void removed (int entityId) {
 		if (mDynamicBody.has(entityId)) {
 			Body body = mDynamicBody.get(entityId).body;
 			UserData.free((UserData)body.getUserData());
-			box2d.destroyBody(body);
+			b2d.destroyBody(body);
 		}
 		if (mKinematicBody.has(entityId)) {
 			Body body = mKinematicBody.get(entityId).body;
 			UserData.free((UserData)body.getUserData());
-			box2d.destroyBody(body);
+			b2d.destroyBody(body);
 		}
 		if (mStaticBody.has(entityId)) {
 			Body body = mStaticBody.get(entityId).body;
 			UserData.free((UserData)body.getUserData());
-			box2d.destroyBody(body);
+			b2d.destroyBody(body);
 		}
 	}
 
 	@Override protected void dispose () {
 		super.dispose();
-		box2d.dispose();
-	}
-
-	public World getBox2d () {
-		return box2d;
+		b2d.dispose();
 	}
 
 	public static class UserData implements Pool.Poolable {
