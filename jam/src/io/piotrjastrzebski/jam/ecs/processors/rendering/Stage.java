@@ -5,6 +5,7 @@ import com.artemis.annotations.Wire;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Actor;
@@ -20,6 +21,7 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 	private @Wire(name = GlobalSettings.WIRE_GUI_VP) ScreenViewport vp;
 	private @Wire SpriteBatch batch;
 	private ComponentMapper<Actor> mActor;
+	private Array<com.badlogic.gdx.scenes.scene2d.Actor> queue = new Array<>();
 	private com.badlogic.gdx.scenes.scene2d.Stage stage;
 	private Table root;
 
@@ -32,6 +34,11 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 		root = new Table();
 		root.setFillParent(true);
 		stage.addActor(root);
+
+		for (com.badlogic.gdx.scenes.scene2d.Actor actor : queue) {
+			stage.addActor(actor);
+		}
+		queue.clear();
 	}
 
 	@Override public void inserted (int entityId) {
@@ -55,6 +62,31 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 
 	public com.badlogic.gdx.scenes.scene2d.Stage getStage () {
 		return stage;
+	}
+
+	/**
+	 * Add actor to stage
+	 * @param actor to add
+	 */
+	public void addActor (com.badlogic.gdx.scenes.scene2d.Actor actor) {
+		if (stage == null) {
+			queue.add(actor);
+		} else {
+			stage.addActor(actor);
+		}
+	}
+
+	/**
+	 * Remove actor from stage
+	 * @param actor to remove
+	 * @return if it was removed
+	 */
+	public boolean removeActor (com.badlogic.gdx.scenes.scene2d.Actor actor) {
+		if (stage == null) {
+			return queue.removeValue(actor, true);
+		} else {
+			return actor.remove();
+		}
 	}
 
 	@Override public InputProcessor getProcessor () {
