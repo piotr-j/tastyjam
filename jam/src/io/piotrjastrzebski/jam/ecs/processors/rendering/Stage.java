@@ -17,6 +17,7 @@ import io.piotrjastrzebski.jam.ecs.processors.gameplay.InputSystem;
  * Created by EvilEntity on 28/01/2016.
  */
 public class Stage extends BaseEntitySystem implements InputSystem {
+	public static final int INPUT_PRIORITY = 100;
 	private static final String TAG = Stage.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GUI_VP) ScreenViewport vp;
 	private @Wire SpriteBatch batch;
@@ -94,6 +95,6 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 	}
 
 	@Override public int getPriority () {
-		return 999;
+		return INPUT_PRIORITY;
 	}
 }
