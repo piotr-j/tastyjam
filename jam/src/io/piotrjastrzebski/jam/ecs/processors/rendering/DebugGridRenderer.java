@@ -28,6 +28,12 @@ public class DebugGridRenderer extends BaseSystem {
 	private @Wire ShapeRenderer renderer;
 	private @Wire ViewBounds vb;
 
+	private float size = 1f;
+	private float overlapSize = .1f;
+	private Color gridColor = new Color();
+	private Color overlapColor = new Color();
+	private Vector2 offset = new Vector2();
+	private boolean fancy = true;
 
 	/**
 	 * Grid with 1 unit spacing and semi transparent cyan gridColor
@@ -40,12 +46,9 @@ public class DebugGridRenderer extends BaseSystem {
 		this(size, 0, 1, 1, .25f);
 	}
 
-	private float size = 1f;
-	private float overlapSize = .1f;
-	private Color gridColor = new Color();
-	private Color overlapColor = new Color();
-	private Vector2 offset = new Vector2();
-	private boolean fancy = true;
+	public DebugGridRenderer (float size, Color color) {
+		this(size, color.r, color.g, color.b, color.a);
+	}
 
 	public DebugGridRenderer (float size, float r, float g, float b, float a) {
 		this.size = size;
@@ -92,16 +95,20 @@ public class DebugGridRenderer extends BaseSystem {
 		this.gridColor.set(gridColor);
 	}
 
-	public void setOverlapColor (Color gridColor) {
-		this.gridColor.set(gridColor);
+	public void setGridColor (float r, float g, float b, float a) {
+		gridColor.set(r, g, b, a);
+	}
+
+	public void setOverlapColor (Color overlapColor) {
+		this.overlapColor.set(overlapColor);
+	}
+
+	public void setOverlapColor (float r, float g, float b, float a) {
+		overlapColor.set(r, g, b, a);
 	}
 
 	public void setOverlapSize (float overlapSize) {
 		this.overlapSize = overlapSize;
-	}
-
-	public void setColor (float r, float g, float b, float a) {
-		gridColor.set(r, g, b, a);
 	}
 
 	public void setSize (float size) {
