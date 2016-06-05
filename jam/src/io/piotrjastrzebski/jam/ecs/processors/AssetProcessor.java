@@ -1,9 +1,9 @@
 package io.piotrjastrzebski.jam.ecs.processors;
 
-import com.artemis.Aspect;
-import com.artemis.ComponentMapper;
+import com.artemis.*;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.IteratingSystem;
+import com.artemis.utils.IntBag;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import io.piotrjastrzebski.jam.ecs.components.rendering.AtlasAsset;
@@ -15,7 +15,7 @@ import io.piotrjastrzebski.jam.utils.Assets;
  *
  * Created by EvilEntity on 28/01/2016.
  */
-public class AssetProcessor extends IteratingSystem {
+public class AssetProcessor extends BaseEntitySystem {
 	private static final String TAG = AssetProcessor.class.getSimpleName();
 
 	private ComponentMapper<AtlasAsset> mAtlasAsset;
@@ -24,7 +24,10 @@ public class AssetProcessor extends IteratingSystem {
 
 	public AssetProcessor () {
 		super(Aspect.all(AtlasAssetDef.class));
-		// we just want inserted/removed
+	}
+
+	@Override protected void initialize () {
+		super.initialize();
 		setEnabled(false);
 	}
 
@@ -49,5 +52,5 @@ public class AssetProcessor extends IteratingSystem {
 		// do whatever is needed
 	}
 
-	@Override protected void process (int entityId) {}
+	@Override protected void processSystem () {}
 }
