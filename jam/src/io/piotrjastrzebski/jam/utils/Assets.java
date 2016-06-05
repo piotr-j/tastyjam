@@ -40,18 +40,22 @@ public class Assets {
 	public <T, P extends AssetLoaderParameters<T>> void setLoader (Class<T> type, AssetLoader<T, P> loader) {
 		manager.setLoader(type, loader);
 	}
+	
+	public void finishLoading() {
+		while (!update());
+	}
 
 	private boolean loaded;
 	public boolean update() {
 		if (!loaded && manager.update()) {
 			loaded = true;
-			finishLoading();
+			loaded();
 		}
 		return loaded;
 	}
 
-	private void finishLoading () {
-		// do we need to do anything?
+	protected void loaded () {
+
 	}
 
 	public <T> T get (String fileName, Class<T> type) {
