@@ -1,5 +1,7 @@
 package io.piotrjastrzebski.jam.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.GdxAI;
 import com.badlogic.gdx.ai.msg.MessageDispatcher;
 import com.badlogic.gdx.ai.msg.MessageManager;
 import com.badlogic.gdx.ai.msg.Telegraph;
@@ -42,7 +44,8 @@ public class Events {
 		dispatcher.dispatchMessage(delay, msg, extraInfo);
 	}
 
-	public static void update() {
+	public static void update(float delta) {
+		GdxAI.getTimepiece().update(delta);
 		dispatcher.update();
 	}
 
