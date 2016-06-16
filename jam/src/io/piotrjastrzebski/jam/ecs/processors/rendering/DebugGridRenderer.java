@@ -68,10 +68,10 @@ public class DebugGridRenderer extends BaseSystem {
 		int height = (int)(vb.height / size) + 2;
 		// major grid lines
 		for (int x = -1; x <= width; x++) {
-			renderer.line(sx + x * size, sy - 1, sx + x * size, sy + height);
+			renderer.line(sx + x * size, sy - 1, sx + x * size, sy + height * size);
 		}
 		for (int y = -1; y <= height; y++) {
-			renderer.line(sx - 1, sy + y * size, sx + width, sy + y * size);
+			renderer.line(sx - 1, sy + y * size, sx + width * size, sy + y * size);
 		}
 
 		if (fancy) {
