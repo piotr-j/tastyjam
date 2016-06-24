@@ -186,7 +186,7 @@ public class DebugShape extends PooledComponent {
 			super.reset();
 			radius = 0.5f;
 			segments = 8;
-			centre = false;
+			centre = true;
 		}
 
 		@Override public void free () {
