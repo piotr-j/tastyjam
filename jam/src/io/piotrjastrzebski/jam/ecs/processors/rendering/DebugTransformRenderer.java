@@ -42,15 +42,21 @@ public class DebugTransformRenderer extends IteratingSystem {
 
 	float xs = .25f;
 	@Override protected void process (int entityId) {
+
 		Transform tm = mTransform.get(entityId);
-		renderer.setColor(0, 1, 1, .5f);
+		float lw = tm.width * xs/2;
+		float lh = tm.height * xs/2;
+		renderer.setColor(0, 1, 1, .75f);
 		renderer.rect(tm.x, tm.y, tm.width, tm.height);
-		renderer.setColor(1, 0, 1, .5f);
-		renderer.line(tm.x - tm.width * xs, tm.y, tm.x + tm.width * xs, tm.y);
-		renderer.line(tm.x, tm.y - tm.height * xs, tm.x, tm.y + tm.height * xs);
-		renderer.setColor(1, 1, 0, .5f);
-		renderer.line(tm.cx - tm.width * xs, tm.cy, tm.cx + tm.width * xs, tm.cy);
-		renderer.line(tm.cx, tm.cy - tm.height * xs, tm.cx, tm.cy + tm.height * xs);
+		renderer.setColor(1, 0, 1, .75f);
+		renderer.line(tm.x - lw, tm.y, tm.x + lw, tm.y);
+		renderer.line(tm.x, tm.y - lh, tm.x, tm.y + lh);
+		renderer.setColor(1, 1, 0, .75f);
+		renderer.line(tm.cx - lw, tm.cy, tm.cx + lw, tm.cy);
+		renderer.line(tm.cx, tm.cy - lh, tm.cx, tm.cy + lh);
+		renderer.setColor(0, 0, 1, .75f);
+		renderer.line(tm.x + tm.originX - lw, tm.y + tm.originY, tm.x + tm.originX + lw, tm.y + tm.originY);
+		renderer.line(tm.x + tm.originX, tm.y + tm.originY - lh, tm.x + tm.originX , tm.y + tm.originY + lh);
 	}
 
 	@Override public void end () {
