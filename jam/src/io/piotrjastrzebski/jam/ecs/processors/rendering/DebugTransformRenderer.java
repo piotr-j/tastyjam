@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
@@ -22,7 +23,7 @@ import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
 public class DebugTransformRenderer extends IteratingSystem {
 	private static final String TAG = DebugTransformRenderer.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
-	public @Wire ShapeRenderer renderer;
+	private @Wire ShapeRenderer renderer;
 	private ComponentMapper<Transform> mTransform;
 
 	public DebugTransformRenderer () {
@@ -40,23 +41,28 @@ public class DebugTransformRenderer extends IteratingSystem {
 		renderer.begin(ShapeRenderer.ShapeType.Line);
 	}
 
-	float xs = .25f;
+	private float xs = .25f;
 	@Override protected void process (int entityId) {
 
 		Transform tm = mTransform.get(entityId);
-		float lw = tm.width * xs/2;
-		float lh = tm.height * xs/2;
-		renderer.setColor(0, 1, 1, .75f);
+		float l = Math.min(tm.width * xs/2, tm.height * xs/2);
+		// cyan
+		renderer.setColor(0, 1, 1, .5f);
 		renderer.rect(tm.x, tm.y, tm.width, tm.height);
+		renderer.setColor(0, 1, 1, .75f);
+		renderer.rect(tm.x, tm.y, tm.originX, tm.originY, tm.width, tm.height, 1, 1, tm.rotation);
+		// magenta - position
 		renderer.setColor(1, 0, 1, .75f);
-		renderer.line(tm.x - lw, tm.y, tm.x + lw, tm.y);
-		renderer.line(tm.x, tm.y - lh, tm.x, tm.y + lh);
+		renderer.line(tm.x - l, tm.y, tm.x + l, tm.y);
+		renderer.line(tm.x, tm.y - l, tm.x, tm.y + l);
+		// yellow - centre position
 		renderer.setColor(1, 1, 0, .75f);
-		renderer.line(tm.cx - lw, tm.cy, tm.cx + lw, tm.cy);
-		renderer.line(tm.cx, tm.cy - lh, tm.cx, tm.cy + lh);
+		renderer.line(tm.cx - l, tm.cy, tm.cx + l, tm.cy);
+		renderer.line(tm.cx, tm.cy - l, tm.cx, tm.cy + l);
+		// blue - origin
 		renderer.setColor(0, 0, 1, .75f);
-		renderer.line(tm.x + tm.originX - lw, tm.y + tm.originY, tm.x + tm.originX + lw, tm.y + tm.originY);
-		renderer.line(tm.x + tm.originX, tm.y + tm.originY - lh, tm.x + tm.originX , tm.y + tm.originY + lh);
+		renderer.line(tm.x + tm.originX - l, tm.y + tm.originY, tm.x + tm.originX + l, tm.y + tm.originY);
+		renderer.line(tm.x + tm.originX, tm.y + tm.originY - l, tm.x + tm.originX , tm.y + tm.originY + l);
 	}
 
 	@Override public void end () {
