@@ -1,6 +1,7 @@
 package io.piotrjastrzebski.jam.ecs.components;
 
 import com.artemis.PooledComponent;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -53,7 +54,7 @@ public class Transform extends PooledComponent {
 	}
 
 	public Transform rotation (float rotation) {
-		this.rotation = rotation;
+		this.rotation = rotation % 360;
 		return this;
 	}
 
