@@ -3,6 +3,7 @@ package io.piotrjastrzebski.jam.ecs.components.rendering;
 import com.artemis.PooledComponent;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 import io.piotrjastrzebski.jam.ecs.components.Transform;
@@ -89,6 +90,8 @@ public class DebugShape extends PooledComponent {
 		public float width = .5f;
 		public float height = .5f;
 		public boolean centre = false;
+		public float originX = .25f;
+		public float originY = .25f;
 
 		private RectShape() {}
 
@@ -108,14 +111,22 @@ public class DebugShape extends PooledComponent {
 			return this;
 		}
 
+		public RectShape origin (float originX, float originY) {
+			this.originX = originX;
+			this.originY = originY;
+			return this;
+		}
+
 		@Override public void render (ShapeRenderer renderer, Transform transform) {
 			tmp.set(renderer.getColor());
 			renderer.setColor(color);
 			// TODO rotation?
+			float x = ox + (centre?-width/2f:0);
+			float y = oy + (centre?-height/2f:0);
 			renderer.rect(
-				transform.x + (centre?-width/2f:0) + ox,
-				transform.y + (centre?-height/2f:0) + oy,
-				width, height
+				transform.x + x, transform.y + y,
+				x + originX, y + originY,
+				width, height, 1, 1, transform.rotation
 			);
 			renderer.setColor(tmp);
 		}
@@ -125,6 +136,8 @@ public class DebugShape extends PooledComponent {
 			super.reset();
 			width = 0.5f;
 			height = 0.5f;
+			originX = .25f;
+			originY = .25f;
 			centre = false;
 		}
 
