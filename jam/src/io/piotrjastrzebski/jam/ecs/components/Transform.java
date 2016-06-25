@@ -60,6 +60,7 @@ public class Transform extends PooledComponent {
 	public Transform size (float width, float height) {
 		this.width = width;
 		this.height = height;
+		origin(width/2, height/2);
 		return this;
 	}
 
