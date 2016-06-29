@@ -8,24 +8,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.AtlasAsset;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
-import io.piotrjastrzebski.jam.ecs.components.Transform;
 
 /**
  * Simple renderer
  *
  * Created by EvilEntity on 28/01/2016.
  */
-public class Renderer extends IteratingSystem {
-	private static final String TAG = Renderer.class.getSimpleName();
+public class RendererAffine2 extends IteratingSystem {
+	private static final String TAG = RendererAffine2.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
 	private @Wire SpriteBatch batch;
 	private ComponentMapper<Transform> mTransform;
 	private ComponentMapper<AtlasAsset> mAtlasAsset;
 	private ComponentMapper<Tint> mTint;
 
-	public Renderer () {
+	public RendererAffine2 () {
 		super(Aspect.all(Transform.class, AtlasAsset.class));
 	}
 
@@ -41,11 +41,8 @@ public class Renderer extends IteratingSystem {
 		Transform transform = mTransform.get(entityId);
 		batch.draw(
 			asset.region,
-			transform.x, transform.y,
-			transform.originX, transform.originY,
 			transform.width, transform.height,
-			transform.scaleX, transform.scaleY,
-			transform.rotation
+			transform.affine2
 		);
 		if (tint != null) batch.setColor(Color.WHITE);
 	}

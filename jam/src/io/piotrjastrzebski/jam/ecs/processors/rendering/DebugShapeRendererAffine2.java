@@ -14,25 +14,24 @@ import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
 
-
 /**
  * Simple renderer
  *
  * Created by EvilEntity on 28/01/2016.
  */
-public class DebugShapeRenderer extends IteratingSystem {
-	private static final String TAG = DebugShapeRenderer.class.getSimpleName();
+public class DebugShapeRendererAffine2 extends IteratingSystem {
+	private static final String TAG = DebugShapeRendererAffine2.class.getSimpleName();
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
 	public @Wire ShapeRenderer renderer;
 	private ComponentMapper<Transform> mTransform;
 	private ComponentMapper<DebugShape> mDebugShape;
 	private ComponentMapper<Tint> mTint;
 
-	public DebugShapeRenderer () {
+	public DebugShapeRendererAffine2 () {
 		this(Aspect.all(Transform.class, DebugShape.class));
 	}
 
-	public DebugShapeRenderer (Aspect.Builder aspect) {
+	public DebugShapeRendererAffine2 (Aspect.Builder aspect) {
 		super(aspect);
 	}
 
@@ -53,7 +52,7 @@ public class DebugShapeRenderer extends IteratingSystem {
 				renderer.end();
 				renderer.begin(shape.getType());
 			}
-			shape.render(renderer, transform);
+			shape.renderAffine2(renderer, transform);
 		}
 
 		if (tint != null) renderer.setColor(Color.WHITE);

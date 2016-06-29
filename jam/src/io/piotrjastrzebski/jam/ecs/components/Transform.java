@@ -1,6 +1,7 @@
 package io.piotrjastrzebski.jam.ecs.components;
 
 import com.artemis.PooledComponent;
+import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -16,6 +17,8 @@ public class Transform extends PooledComponent {
 	public float scaleY;
 	public float originX, originY;
 	public float rotation;
+	// updated by Transformer.class
+	public Affine2 affine2 = new Affine2();
 
 	public Transform () {
 		reset();
@@ -83,5 +86,6 @@ public class Transform extends PooledComponent {
 		originX = originY = .5f;
 		scaleX = scaleY = 1;
 		rotation = 0;
+		affine2.setToTrnRotRadScl(0, 0, 0, 0, 0);
 	}
 }
