@@ -11,6 +11,10 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.ReflectionPool;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.*;
+import io.piotrjastrzebski.jam.ecs.physics.components.BodyDef;
+import io.piotrjastrzebski.jam.ecs.physics.components.DynamicBody;
+import io.piotrjastrzebski.jam.ecs.physics.components.KinematicBody;
+import io.piotrjastrzebski.jam.ecs.physics.components.StaticBody;
 
 /**
  * We support only aabb stuff

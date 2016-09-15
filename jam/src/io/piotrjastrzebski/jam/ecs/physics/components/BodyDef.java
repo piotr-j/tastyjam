@@ -1,10 +1,11 @@
-package io.piotrjastrzebski.jam.ecs.physics;
+package io.piotrjastrzebski.jam.ecs.physics.components;
 
 import com.artemis.PooledComponent;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
+import io.piotrjastrzebski.jam.ecs.physics.Physics;
 
 /**
  * Created by EvilEntity on 22/01/2016.
