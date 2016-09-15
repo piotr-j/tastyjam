@@ -22,14 +22,7 @@ public class Scripts extends IteratingSystem {
 	}
 
 	@Override protected void inserted (int entityId) {
-		ScriptComponent sc = mScript.get(entityId);
-		sc.scripts.addAll(sc.add);
-		sc.scripts.removeAll(sc.remove, true);
-		for (Script script : sc.scripts) {
-			world.inject(script, false);
-			script.world = world;
-			script.inserted(entityId);
-		}
+		process(entityId);
 	}
 
 	@Override protected void process (int entityId) {
