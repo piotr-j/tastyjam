@@ -1,4 +1,4 @@
-package io.piotrjastrzebski.jam.ecs.processors.rendering;
+package io.piotrjastrzebski.jam.ecs.physics;
 
 import com.artemis.BaseSystem;
 import com.artemis.annotations.Wire;
@@ -6,17 +6,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
-import io.piotrjastrzebski.jam.ecs.processors.physics.Physics;
+import io.piotrjastrzebski.jam.ecs.physics.Physics;
 
 /**
  * Created by EvilEntity on 18/01/2016.
  */
-public class DebugBox2dRenderer extends BaseSystem {
+public class DebugPhysicsRenderer extends BaseSystem {
 	private @Wire ShapeRenderer shapes;
 	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
 	private @Wire Physics physics;
 
-	public DebugBox2dRenderer () {
+	public DebugPhysicsRenderer () {
 		super();
 	}
 

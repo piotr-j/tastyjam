@@ -1,4 +1,4 @@
-package io.piotrjastrzebski.jam.ecs.components.physics;
+package io.piotrjastrzebski.jam.ecs.physics;
 
 import com.badlogic.gdx.physics.box2d.Body;
 

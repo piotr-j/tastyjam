@@ -1,4 +1,4 @@
-package io.piotrjastrzebski.jam.ecs.processors.physics;
+package io.piotrjastrzebski.jam.ecs.physics;
 
 import com.artemis.Aspect;
 import com.artemis.BaseEntitySystem;
@@ -7,12 +7,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.ReflectionPool;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.*;
-import io.piotrjastrzebski.jam.ecs.components.physics.*;
 
 /**
  * We support only aabb stuff

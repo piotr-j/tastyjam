@@ -14,13 +14,13 @@ allprojects {
 
     group = 'com.github.piotr-j'
 
-    version = '1.2'
+    version = '1.2.2'
     ext {
         appName = "tasty"
-        gdxVersion = '1.9.3'
+        gdxVersion = '1.9.4'
         box2DLightsVersion = '1.4'
         aiVersion = '1.8.0'
-        artemisOdbVersion = "2.0.0-RC2"
+        artemisOdbVersion = "2.0.0"
     }
 
     repositories {
