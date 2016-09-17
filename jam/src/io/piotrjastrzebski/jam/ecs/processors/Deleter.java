@@ -53,13 +53,13 @@ public class Deleter extends IteratingSystem {
 		return false;
 	}
 
-	public void deleteAfter(int entityId, float delay) {
+	public void deleteAfterSeconds (int entityId, float delay) {
 		if (!isDeleted(entityId)) {
 			mDeleteAfter.create(entityId).time(delay);
 		}
 	}
 
-	public void deleteAfter(int entityId, int frames) {
+	public void deleteAfterFrames (int entityId, int frames) {
 		if (!isDeleted(entityId)) {
 			mDeleteAfter.create(entityId).frames(frames);
 		}
