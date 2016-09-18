@@ -11,10 +11,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.ReflectionPool;
 import io.piotrjastrzebski.jam.ecs.GlobalSettings;
 import io.piotrjastrzebski.jam.ecs.components.*;
-import io.piotrjastrzebski.jam.ecs.physics.components.BodyDef;
-import io.piotrjastrzebski.jam.ecs.physics.components.DynamicBody;
-import io.piotrjastrzebski.jam.ecs.physics.components.KinematicBody;
-import io.piotrjastrzebski.jam.ecs.physics.components.StaticBody;
+import io.piotrjastrzebski.jam.ecs.physics.components.*;
 
 /**
  * We support only aabb stuff
@@ -27,6 +24,8 @@ public class Physics extends BaseEntitySystem {
 	private ComponentMapper<DynamicBody> mDynamicBody;
 	private ComponentMapper<KinematicBody> mKinematicBody;
 	private ComponentMapper<StaticBody> mStaticBody;
+	private ComponentMapper<PhysicsBody> mPhysicsBody;
+
 	public World b2d;
 	public float stepTime = 1/60f;
 	public int velocityIters = 6;
@@ -66,6 +65,9 @@ public class Physics extends BaseEntitySystem {
 
 		Body body = b2d.createBody(bodyDef.def);
 		iBody.setBody(body);
+
+		PhysicsBody physicsBody = mPhysicsBody.create(entityId);
+		physicsBody.body = body;
 
 		fixtureDef.restitution = bodyDef.restitution;
 		fixtureDef.friction = bodyDef.friction;
