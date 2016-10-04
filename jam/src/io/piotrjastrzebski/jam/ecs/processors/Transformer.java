@@ -19,8 +19,6 @@ public class Transformer extends IteratingSystem {
 	protected ComponentMapper<Transform> mTransform;
 	protected ComponentMapper<InheritTransform> mInheritTransform;
 
-	protected IntSet processed = new IntSet();
-
 	public Transformer () {
 		super(Aspect.all(Transform.class));
 	}
@@ -50,15 +48,15 @@ public class Transformer extends IteratingSystem {
 		});
 	}
 
+	int tick;
 	@Override protected void begin () {
-		processed.clear();
+		tick++;
 	}
 
 	@Override protected void process (int entityId) {
-		if (processed.contains(entityId)) return;
-		processed.add(entityId);
 		Transform tf = mTransform.get(entityId);
-
+		if (tf.lastTick >= tick) return;
+		tf.lastTick = tick;
 		apply(tf);
 
 		// update if we have a parent/children

@@ -20,6 +20,8 @@ public class Transform extends PooledComponent {
 	// updated by Transformer.class
 	public Affine2 affine2 = new Affine2();
 
+	public int lastTick;
+
 	public Transform () {
 		reset();
 	}
