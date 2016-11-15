@@ -14,7 +14,7 @@ allprojects {
 
     group = 'com.github.piotr-j'
 
-    version = '1.2.3'
+    version = '1.2.4'
     ext {
         appName = "tasty"
         gdxVersion = '1.9.4'
