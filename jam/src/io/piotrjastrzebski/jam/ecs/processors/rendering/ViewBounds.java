@@ -28,10 +28,10 @@ public class ViewBounds extends BaseSystem {
 
 
 	@Override protected void processSystem () {
-		x = sx = camera.position.x - vp.getWorldWidth() / 2f;
-		y = sy = camera.position.y - vp.getWorldHeight() / 2f;
 		width = vp.getWorldWidth() * camera.zoom;
 		height = vp.getWorldHeight() * camera.zoom;
+		x = sx = camera.position.x - width / 2f;
+		y = sy = camera.position.y - height / 2f;
 
 		ex = sx + width;
 		ey = sy + height;
