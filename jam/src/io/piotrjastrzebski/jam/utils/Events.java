@@ -85,11 +85,11 @@ public class Events {
 		dispatcher.dispatchMessage(sender, msg, extraInfo);
 	}
 
-	public static void send(float delay, int msg) {
+	public static void sendDelayed(float delay, int msg) {
 		dispatcher.dispatchMessage(delay, msg);
 	}
 
-	public static void send(float delay, int msg, Object extraInfo) {
+	public static void sendDelayed(float delay, int msg, Object extraInfo) {
 		dispatcher.dispatchMessage(delay, msg, extraInfo);
 	}
 
