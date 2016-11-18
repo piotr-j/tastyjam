@@ -3,6 +3,8 @@ package io.piotrjastrzebski.jam.ecs.processors.rendering;
 import com.artemis.*;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
@@ -50,6 +52,7 @@ public class Stage extends BaseEntitySystem implements InputSystem {
 	@Override protected void processSystem () {
 		stage.act(world.delta);
 		stage.draw();
+		batch.setColor(Color.WHITE);
 	}
 
 	@Override public void removed (int entityId) {
