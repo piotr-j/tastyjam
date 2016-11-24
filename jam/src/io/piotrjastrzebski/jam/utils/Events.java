@@ -6,6 +6,7 @@ import com.badlogic.gdx.ai.msg.MessageDispatcher;
 import com.badlogic.gdx.ai.msg.MessageManager;
 import com.badlogic.gdx.ai.msg.Telegraph;
 import com.badlogic.gdx.utils.IntMap;
+import com.badlogic.gdx.utils.ObjectIntMap;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.Field;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.utils.reflect.ReflectionException;
  */
 public class Events {
 	private final static String TAG = Events.class.getSimpleName();
+	public static final int INVALID_EVENT_ID = -1;
 
 	protected static MessageDispatcher dispatcher = MessageManager.getInstance();
 
@@ -102,6 +104,18 @@ public class Events {
 		dispatcher.clear();
 	}
 
+	protected static ObjectIntMap<String> nameToId = new ObjectIntMap<>();
+	public static int eventIdForName(String name) {
+		return nameToId.get(name, INVALID_EVENT_ID);
+	}
+
+	public static String nameForEventId(int id) {
+		for (ObjectIntMap.Entry<String> entry : nameToId) {
+			if (entry.value == id) return entry.key;
+		}
+		return "INVALID_EVENT_ID";
+	}
+
 	/**
 	 * Check if all public final static int fields have unique values
 	 *
@@ -124,6 +138,7 @@ public class Events {
 					valid = false;
 				} else {
 					eventIdName.put(id, field.getName());
+					nameToId.put(field.getName(), id);
 				}
 			} catch (ReflectionException e) {
 				e.printStackTrace();
