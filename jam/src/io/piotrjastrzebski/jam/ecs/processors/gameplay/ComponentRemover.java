@@ -71,7 +71,10 @@ public class ComponentRemover extends IteratingSystem {
 		}
 	}
 
-	protected static class RemoveAfterEntry implements Pool.Poolable {
+	/**
+	 * Public for reflection
+	 */
+	public static class RemoveAfterEntry implements Pool.Poolable {
 		public static Pool<RemoveAfterEntry> pool = new Pool<RemoveAfterEntry>() {
 			@Override protected RemoveAfterEntry newObject () {
 				return new RemoveAfterEntry();

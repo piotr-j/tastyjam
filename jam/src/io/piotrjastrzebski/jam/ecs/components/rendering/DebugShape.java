@@ -107,7 +107,10 @@ public class DebugShape extends PooledComponent {
 		public float originX = .25f;
 		public float originY = .25f;
 
-		private RectShape() {}
+		/**
+		 * For reflection use
+		 */
+		public RectShape() {}
 
 		public RectShape init (ShapeRenderer.ShapeType type, float width, float height) {
 			super.init(type);
@@ -191,7 +194,10 @@ public class DebugShape extends PooledComponent {
 		public boolean centre = true;
 		public int segments = 8;
 
-		private CircleShape() {}
+		/**
+		 * For reflection use
+		 */
+		public CircleShape() {}
 
 		public CircleShape init (ShapeRenderer.ShapeType type, float diameter) {
 			super.init(type);
