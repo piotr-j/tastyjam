@@ -10,11 +10,6 @@ eclipse.project {
     name = appName + "-tools"
 }
 
-task sourcesJar(type: Jar, dependsOn:classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
+ext {
+    ARTIFACTID = 'tastyjam-tools'
 }

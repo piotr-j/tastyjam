@@ -132,7 +132,7 @@ public class Events {
 				continue;
 			try {
 				// NOTE we could try messing with the fields to assign them sequential ids, but it is messy and might not work
-				int id = (int)field.get(cls);
+				int id = (Integer)field.get(cls);
 				if (eventIdName.containsKey(id)) {
 					Gdx.app.error(TAG, "Event '" + eventIdName.get(id) + "' clashes with event '" + field.getName() + "', id = " + id);
 					valid = false;

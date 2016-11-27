@@ -1,3 +1,8 @@
+ext {
+    GROUPID = 'com.github.piotr-j'
+    VERSION = '1.2.5'
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -12,9 +17,6 @@ allprojects {
     apply plugin: "idea"
     apply plugin: 'maven'
 
-    group = 'com.github.piotr-j'
-
-    version = '1.2.4'
     ext {
         appName = "tasty"
         gdxVersion = '1.9.4'
@@ -28,11 +30,15 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
+
+    group = GROUPID
+    version = VERSION
 }
 
 
 project(":jam") {
     apply plugin: "java"
+    apply from: '../publish.gradle'
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -46,6 +52,7 @@ project(":jam") {
 
 project(":tools") {
     apply plugin: "java"
+    apply from: '../publish.gradle'
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
