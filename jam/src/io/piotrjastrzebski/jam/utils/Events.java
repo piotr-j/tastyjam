@@ -121,28 +121,34 @@ public class Events {
 	 *
 	 * @return if all event ids are unique
 	 */
-	public static boolean validate(Class cls) {
+	public static boolean validate(Class<? extends io.piotrjastrzebski.jam.utils.Events> cls) {
 		boolean valid = true;
 		// check if we have made a typo and have duplicate event ids
 		Field[] fields = ClassReflection.getDeclaredFields(cls);
 		IntMap<String> eventIdName = new IntMap<>();
 
-		for (Field field : fields) {
-			if (!field.isStatic() || field.getType() != int.class)
-				continue;
-			try {
-				// NOTE we could try messing with the fields to assign them sequential ids, but it is messy and might not work
-				int id = (Integer)field.get(cls);
-				if (eventIdName.containsKey(id)) {
-					Gdx.app.error(TAG, "Event '" + eventIdName.get(id) + "' clashes with event '" + field.getName() + "', id = " + id);
-					valid = false;
-				} else {
-					eventIdName.put(id, field.getName());
-					nameToId.put(field.getName(), id);
+		try {
+			// NOTE on gwt we cant get static field directly from class
+			Object instance = ClassReflection.newInstance(cls);
+			for (Field field : fields) {
+				if (!field.isStatic() || field.getType() != int.class)
+					continue;
+				try {
+					// NOTE we could try messing with the fields to assign them sequential ids, but it is messy and might not work
+					int id = (Integer)field.get(instance);
+					if (eventIdName.containsKey(id)) {
+						Gdx.app.error(TAG, "Event '" + eventIdName.get(id) + "' clashes with event '" + field.getName() + "', id = " + id);
+						valid = false;
+					} else {
+						eventIdName.put(id, field.getName());
+						nameToId.put(field.getName(), id);
+					}
+				} catch (ReflectionException ex) {
+					Gdx.app.error(TAG, "Failed to get value for field ", ex);
 				}
-			} catch (ReflectionException e) {
-				e.printStackTrace();
 			}
+		} catch (ReflectionException ex) {
+			Gdx.app.error(TAG, "Failed to create instance of class " + cls, ex);
 		}
 		return valid;
 	}
