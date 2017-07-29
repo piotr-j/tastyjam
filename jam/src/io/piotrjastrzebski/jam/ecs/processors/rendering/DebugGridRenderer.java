@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 
 /**
  * Draws a grid centered around GlobalSettings.WIRE_GAME_CAM with a given size
@@ -24,7 +24,7 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  */
 public class DebugGridRenderer extends BaseSystem {
 	private static final String TAG = DebugGridRenderer.class.getSimpleName();
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
 	private @Wire ShapeRenderer renderer;
 	private @Wire ViewBounds vb;
 

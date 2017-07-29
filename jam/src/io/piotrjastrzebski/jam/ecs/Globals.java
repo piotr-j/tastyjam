@@ -7,18 +7,18 @@ import com.badlogic.gdx.math.Vector2;
  *
  * Created by EvilEntity on 20/01/2016.
  */
-public class GlobalSettings {
-	private GlobalSettings (){}
+public class Globals {
+	private Globals (){}
 
 	/**
 	 * Initialize target scale and dimensions of ideal screen
 	 * Should be called before any Screen is instantiated
 	 */
 	public static void init(float scale, int targetWidth, int targetHeight) {
-		GlobalSettings.SCALE = scale;
-		GlobalSettings.INV_SCALE = 1f/scale;
-		GlobalSettings.WIDTH = targetWidth * INV_SCALE;
-		GlobalSettings.HEIGHT = targetHeight * INV_SCALE;
+		Globals.SCALE = scale;
+		Globals.INV_SCALE = 1f/scale;
+		Globals.WIDTH = targetWidth * INV_SCALE;
+		Globals.HEIGHT = targetHeight * INV_SCALE;
 	}
 
 	public static float SCALE = 48f;

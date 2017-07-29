@@ -3,9 +3,8 @@ package io.piotrjastrzebski.jam.ecs.processors.rendering;
 import com.artemis.BaseSystem;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 
 /**
  * Contains current view bounds
@@ -13,8 +12,8 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  * Created by EvilEntity on 24/01/2016.
  */
 public class ViewBounds extends BaseSystem {
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
-	private @Wire(name = GlobalSettings.WIRE_GAME_VP) ExtendViewport vp;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_VP) ExtendViewport vp;
 	public float x = 0f;
 	public float y = 0f;
 	public float sx = 0f;

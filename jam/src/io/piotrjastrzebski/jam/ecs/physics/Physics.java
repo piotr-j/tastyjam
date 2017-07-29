@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.ReflectionPool;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 import io.piotrjastrzebski.jam.ecs.components.*;
 import io.piotrjastrzebski.jam.ecs.physics.components.*;
 
@@ -36,7 +36,7 @@ public class Physics extends BaseEntitySystem {
 	}
 
 	@Override protected void initialize () {
-		b2d = new World(GlobalSettings.GRAVITY, true);
+		b2d = new World(Globals.GRAVITY, true);
 	}
 
 	private FixtureDef fixtureDef = new FixtureDef();

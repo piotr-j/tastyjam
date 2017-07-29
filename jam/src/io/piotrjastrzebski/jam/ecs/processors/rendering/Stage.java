@@ -4,12 +4,11 @@ import com.artemis.*;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Actor;
 import io.piotrjastrzebski.jam.ecs.processors.gameplay.InputSystem;
 
@@ -21,7 +20,7 @@ import io.piotrjastrzebski.jam.ecs.processors.gameplay.InputSystem;
 public class Stage extends BaseEntitySystem implements InputSystem {
 	public static final int INPUT_PRIORITY = 100;
 	private static final String TAG = Stage.class.getSimpleName();
-	private @Wire(name = GlobalSettings.WIRE_GUI_VP) ScreenViewport vp;
+	private @Wire(name = Globals.WIRE_GUI_VP) ScreenViewport vp;
 	private @Wire SpriteBatch batch;
 	private ComponentMapper<Actor> mActor;
 	private Array<com.badlogic.gdx.scenes.scene2d.Actor> queue = new Array<>();

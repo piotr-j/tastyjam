@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
 import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
@@ -22,7 +22,7 @@ import io.piotrjastrzebski.jam.ecs.components.rendering.Tint;
  */
 public class DebugShapeRenderer extends IteratingSystem {
 	private static final String TAG = DebugShapeRenderer.class.getSimpleName();
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
 	public @Wire ShapeRenderer renderer;
 	private ComponentMapper<Transform> mTransform;
 	private ComponentMapper<DebugShape> mDebugShape;

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 import io.piotrjastrzebski.jam.ecs.components.Transform;
 import io.piotrjastrzebski.jam.ecs.components.rendering.DebugShape;
 import io.piotrjastrzebski.jam.utils.Affine2Utils;
@@ -21,7 +21,7 @@ import io.piotrjastrzebski.jam.utils.Affine2Utils;
  */
 public class DebugTransformRendererAffine2 extends IteratingSystem {
 	private static final String TAG = DebugTransformRendererAffine2.class.getSimpleName();
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
 	private @Wire ShapeRenderer renderer;
 	private ComponentMapper<Transform> mTransform;
 

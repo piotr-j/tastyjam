@@ -5,9 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 
 /**
  * Contains current state of main pointer
@@ -15,7 +14,7 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  * Created by EvilEntity on 24/01/2016.
  */
 public class CursorProcessor extends BaseInputSystem {
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
 	public int justTouchedFrameDelay = 2;
 	public float x;
 	public float y;

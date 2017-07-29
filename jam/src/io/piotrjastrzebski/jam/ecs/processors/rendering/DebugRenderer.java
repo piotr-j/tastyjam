@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
-import io.piotrjastrzebski.jam.ecs.GlobalSettings;
+import io.piotrjastrzebski.jam.ecs.Globals;
 
 /**
  * Simple debug renderer for arbitrary
@@ -19,7 +19,7 @@ import io.piotrjastrzebski.jam.ecs.GlobalSettings;
  */
 public class DebugRenderer extends IteratingSystem {
 	private static final String TAG = DebugRenderer.class.getSimpleName();
-	private @Wire(name = GlobalSettings.WIRE_GAME_CAM) OrthographicCamera camera;
+	private @Wire(name = Globals.WIRE_GAME_CAM) OrthographicCamera camera;
 	public @Wire ShapeRenderer renderer;
 	private ComponentMapper<DebugRenderable> mDebugShape;
 
