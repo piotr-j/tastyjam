@@ -1,16 +1,29 @@
-apply plugin: "java"
+apply plugin: "java-library"
+apply plugin: 'maven-publish'
 
-sourceCompatibility = 1.7
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 
-eclipse.project {
-    name = appName + "-jam"
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from 'src/'
 }
 
-ext {
-    ARTIFACTID = 'tastyjam'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            group = 'io.piotrjastrzebski'
+            artifactId = 'tastyjam'
+            from components.java
+            afterEvaluate {
+                artifact sourcesJar
+            }
+        }
+    }
 }
 

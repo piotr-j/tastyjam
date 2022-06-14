@@ -1,6 +1,6 @@
 ext {
-    GROUPID = 'com.github.piotr-j'
-    VERSION = '1.2.7'
+    GROUPID = 'io.piotrjastrzebski'
+    VERSION = '1.2.8'
 }
 
 buildscript {
@@ -15,14 +15,14 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
-    apply plugin: 'maven'
 
     ext {
         appName = "tasty"
-        gdxVersion = '1.9.8'
-        box2DLightsVersion = '1.4'
-        aiVersion = '1.8.1'
-        artemisOdbVersion = "2.0.0"
+        gdxVersion = '1.11.0'
+        box2DLightsVersion = '1.5'
+        aiVersion = '1.8.2'
+        artemisOdbVersion = "2.3.0"
+        gdxControllersVersion = "2.0.1"
     }
 
     repositories {
@@ -37,34 +37,29 @@ allprojects {
 
 
 project(":jam") {
-    apply plugin: "java"
-    apply from: '../publish.gradle'
+    apply plugin: "java-library"
 
     dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
-        compile "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+        implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
+        implementation "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        implementation "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
+
     }
 }
 
 project(":tools") {
-    apply plugin: "java"
-    apply from: '../publish.gradle'
+    apply plugin: "java-library"
 
     dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
-        compile "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-ai:$aiVersion"
+        implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
+        implementation "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
+        implementation "net.onedaybeard.artemis:artemis-odb:$artemisOdbVersion"
     }
-}
-
-tasks.eclipse.doLast {
-    delete ".project"
 }
